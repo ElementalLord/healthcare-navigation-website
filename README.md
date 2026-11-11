@@ -1,42 +1,115 @@
 # CarePath — Healthcare Navigation Website
 
-A responsive, accessible static website prototype for a student-led, nonmedical healthcare-navigation initiative.
+CarePath is a student-led project in Houston and Katy, Texas. We help families **follow through** on healthcare referrals,
+working through community organizations with adult supervision. This website supports that work: it gives families
+plain-language guides and call scripts, and gives partner organizations a clear picture of what we do.
 
-## Preview locally
+> This is nonmedical information only. No diagnosis, medical advice, eligibility decisions, legal or immigration advice.
 
-No package installation or build step is required.
+## Tech stack
 
-1. Clone or download this repository.
-2. Open `index.html` in a modern browser.
-3. Or run `python3 -m http.server 8000` in the project folder and visit `http://localhost:8000`.
+| Tool | What it does |
+| --- | --- |
+| [Vite](https://vite.dev) | Dev server and build tool |
+| [React](https://react.dev) + [TypeScript](https://www.typescriptlang.org) | Pages and components, with type checking |
+| [Tailwind CSS](https://tailwindcss.com) | Styling with utility classes |
+| [shadcn/ui](https://ui.shadcn.com) | Accessible UI components (copied into `src/components/ui`, built on Radix) |
+| [Framer Motion](https://motion.dev) | Animations (automatically turned off for people who choose reduced motion) |
+| [React Router](https://reactrouter.com) | Pages (`/#/guides`, `/#/directory`, …) |
+| [Lucide](https://lucide.dev) | Icons |
 
-## Included
+No backend, database, cookies, analytics, or third-party requests. Fonts are self-hosted.
 
-- Responsive homepage and mobile navigation
-- Plain-language explanation of nonmedical navigation
-- Optional two-step guide with questions to ask service providers
-- Resource directory placeholder that clearly states no listings are verified or published yet
-- About, get-involved, and contact sections
-- Demonstration-only contact form: no network request, storage, or transmission
-- Keyboard focus states, skip link, semantic landmarks, and reduced-motion support
+## Run it on your computer
 
-## Safety and privacy boundaries
+You need [Node.js](https://nodejs.org) 20 or newer.
 
-This is a front-end prototype, not an operating navigation service. It does not provide diagnosis, triage, treatment recommendations, eligibility decisions, or emergency support. It does not collect medical history or transmit form submissions. Do not add real client intake until adult oversight, staff training, consent, privacy, retention, access controls, and escalation procedures have been reviewed and approved.
+```bash
+npm install
+```
 
-No partner organizations, service coverage, outcomes, credentials, nonprofit status, or resource listings are claimed. The directory intentionally remains empty until each listing can be verified. Confirm the initial service geography before adding local resources.
+```bash
+npm run dev
+```
 
-## Before public launch
+Then open the address it prints (usually http://localhost:5173). Changes show up as soon as you save.
 
-- Confirm the public project name, mission wording, geographic service area, adult oversight, and contact channel.
-- Conduct community interviews and accessibility/usability testing with appropriate consent and supervision.
-- Verify each resource directly with its organization; record service area, eligibility, costs, languages, official contact details, and last-verified date.
-- Have qualified adults and community partners review content. Keep navigation strictly nonmedical.
-- Decide whether to use a real form only after reviewing privacy, data handling, consent, retention, and access.
-- Add a privacy notice and clear service limitations before collecting any information.
-- Test on mobile and desktop, including keyboard and screen-reader navigation.
-- Configure hosting (such as GitHub Pages) only after project owners approve a public launch.
+Other commands:
 
-## Technology
+```bash
+npm run build     # type-check and build the site into dist/
+npm run preview   # serve the built site locally
+npm run lint      # check for common mistakes
+```
 
-Plain HTML, CSS, and vanilla JavaScript. No framework, database, analytics, cookies, authentication, or third-party form service is used. Google Fonts are loaded from Google's font CDN; use system fonts if a fully self-hosted setup is preferred.
+## Where things are
+
+```
+src/
+  config/site.ts          ← contact email, emergency text, region. START HERE.
+  data/                   ← all the words on the site live here
+    journeys.ts           ← step-by-step guides (referral, bills, interpreter, …)
+    topics.ts             ← Quick Guide topics and questions
+    glossary.ts           ← plain-language definitions
+    resources.json        ← resource directory listings
+    content.ts            ← status board, follow-up protocol, volunteer roles and limits
+    barriers.ts           ← barrier categories (and research percentages, once sourced)
+    types.ts              ← the "shape" of each kind of content
+  pages/                  ← one file per page
+  components/             ← reusable pieces (QuickGuide, ContactForm, …)
+    ui/                   ← shadcn/ui components (Button, Card, Tabs, …)
+    layout/               ← header, footer, emergency bar
+  index.css               ← colors, fonts, print styles
+```
+
+### Common edits
+
+- **Change wording:** edit the files in `src/data/`. You rarely need to touch the pages.
+- **Add a guide:** add an object to `journeys` in `src/data/journeys.ts`. TypeScript will tell you if a field is missing.
+  It shows up automatically on the home page and on `/guides`.
+- **Add a directory listing:** add an entry to `src/data/resources.json` (see "Verifying resources" below).
+- **Set the contact email:** set `contactEmail` in `src/config/site.ts`. Forms switch from "demo" to opening the
+  visitor's own email app. Only do this once someone has agreed to check that inbox.
+
+### Accessibility rules (please keep these)
+
+- Body text is 17px; nothing smaller than 14px.
+- All text meets WCAG AA contrast (4.5:1). Use `text-muted-foreground` for grey text on light backgrounds,
+  and `text-brand-mint` **only** on the dark navy background.
+- Decorative icons get `aria-hidden="true"`.
+- The emergency bar (`EmergencyBar.tsx`) appears on every page. Do not remove it.
+
+## Content rules
+
+- Plain language, about a 5th–6th grade reading level. Short sentences.
+- Say "usually" for timing; offices differ.
+- Houston/Harris County/Fort Bend facts go in a guide's `localNotes` with `verified: false` until confirmed with the
+  organization. Unverified notes are shown with a warning.
+- Have a qualified adult advisor review guide changes before publishing.
+- Do not publish translations until a qualified translator has reviewed them.
+- Do not publish research percentages (`barriers.ts`) without naming the source.
+
+## Verifying resources
+
+The directory currently shows **sample** entries only. To publish a real listing:
+
+1. Contact the organization directly and confirm service area, eligibility, cost, languages, and contact details.
+2. In `resources.json`, set `"verification_status": "verified"`, `"last_verified": "YYYY-MM-DD"`, and `"verified_by"`.
+3. Re-check every listing at least every 3 months. Change to `"needs-review"` if anything is uncertain.
+4. Remove the sample entries once real ones exist.
+
+## Privacy and safety boundaries
+
+The site does not collect, store, or transmit personal information. Forms either do nothing (demo mode) or open the
+visitor's own email app. Do not add real client intake to this website. Families are introduced through partner
+organizations, and any tracking happens outside the website using pseudonymous IDs and task status only, after
+adult oversight, consent, privacy, retention, and escalation procedures are approved.
+
+## Deploying (GitHub Pages)
+
+`.github/workflows/deploy.yml` builds the site and publishes it whenever `main` changes.
+
+**One-time setup:** in the GitHub repo, go to **Settings → Pages → Build and deployment → Source** and choose
+**GitHub Actions**. (If Pages is set to "Deploy from a branch", it will serve the unbuilt source and the site will be blank.)
+
+The site uses hash URLs (`/#/guides`) so it works on GitHub Pages without extra server setup.

@@ -1,0 +1,77 @@
+[
+  {
+    "id": "sample-community-clinic",
+    "name": "SAMPLE — Example Community Health Center",
+    "category": "Clinics & health centers",
+    "description": "Example listing showing how a clinic will appear. Not a real organization.",
+    "service_area": "Example: West Houston",
+    "eligibility": "Example: open to all ages; insurance not required",
+    "cost": "Example: sliding-scale fee based on income",
+    "languages": ["English", "Spanish"],
+    "phone": "",
+    "website": "",
+    "address": "",
+    "last_verified": "",
+    "verification_status": "sample"
+  },
+  {
+    "id": "sample-hospital-financial-help",
+    "name": "SAMPLE — Example Hospital Financial Assistance Office",
+    "category": "Bills & financial help",
+    "description": "Example listing showing how a financial assistance program will appear. Not a real organization.",
+    "service_area": "Example: Harris County residents",
+    "eligibility": "Example: income-based; application required",
+    "cost": "Free to apply",
+    "languages": ["English", "Spanish", "Vietnamese"],
+    "last_verified": "",
+    "verification_status": "sample"
+  },
+  {
+    "id": "sample-language-line",
+    "name": "SAMPLE — Example Interpreter Request Line",
+    "category": "Language help",
+    "description": "Example listing showing how a language service will appear. Not a real organization.",
+    "service_area": "Example: Katy area",
+    "eligibility": "Example: patients of partner clinics",
+    "cost": "Free",
+    "languages": ["Arabic", "Dari", "Pashto", "Swahili"],
+    "last_verified": "",
+    "verification_status": "sample"
+  },
+  {
+    "id": "sample-rides",
+    "name": "SAMPLE — Example Medical Rides Program",
+    "category": "Transportation",
+    "description": "Example listing showing how a transportation program will appear. Not a real organization.",
+    "service_area": "Example: Harris and Fort Bend counties",
+    "eligibility": "Example: Medicaid members; book 2 business days ahead",
+    "cost": "Example: free for eligible members",
+    "languages": ["English", "Spanish"],
+    "last_verified": "",
+    "verification_status": "sample"
+  },
+  {
+    "id": "sample-enrollment",
+    "name": "SAMPLE — Example Insurance Enrollment Helpers",
+    "category": "Insurance & enrollment help",
+    "description": "Example listing showing how an enrollment-help service will appear. Not a real organization.",
+    "service_area": "Example: Greater Houston",
+    "eligibility": "Example: anyone",
+    "cost": "Free",
+    "languages": ["English", "Spanish", "Chinese"],
+    "last_verified": "",
+    "verification_status": "sample"
+  },
+  {
+    "id": "sample-food",
+    "name": "SAMPLE — Example Food Pantry with Health Navigation",
+    "category": "Food & basic needs",
+    "description": "Example listing showing how a basic-needs program will appear. Not a real organization.",
+    "service_area": "Example: Katy",
+    "eligibility": "Example: walk-ins welcome",
+    "cost": "Free",
+    "languages": ["English", "Spanish", "Arabic"],
+    "last_verified": "",
+    "verification_status": "sample"
+  }
+]

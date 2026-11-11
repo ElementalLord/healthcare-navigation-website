@@ -1,0 +1,136 @@
+/*
+  Global styles and design tokens.
+  Colors were chosen to meet WCAG AA contrast (4.5:1 or better for text).
+  - Use `text-muted-foreground` for secondary text on light backgrounds.
+  - Use `text-brand-mint` ONLY on the dark navy background (it fails on white).
+*/
+@import "tailwindcss";
+@import "@fontsource-variable/manrope";
+@import "@fontsource-variable/dm-sans";
+
+@theme inline {
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --color-brand-navy: var(--navy);
+  --color-brand-navy-2: var(--navy-2);
+  --color-brand-teal: var(--teal);
+  --color-brand-mint: var(--mint);
+  --color-brand-sand: var(--sand);
+  --color-brand-amber: var(--amber);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  /* Brand */
+  --navy: #102c3a;        /* main dark background */
+  --navy-2: #1a4051;      /* raised surfaces on navy */
+  --teal: #1d6b60;        /* text/links on light backgrounds: 6.3:1 on white */
+  --mint: #7fd8c6;        /* accents on navy only: 8.9:1 on navy */
+  --sand: #f3efe6;        /* warm light section background */
+  --amber: #8a5a00;       /* warning text on light: 6.0:1 on white */
+
+  /* shadcn semantic tokens */
+  --background: #f7f9f6;
+  --foreground: #142f3b;
+  --card: #ffffff;
+  --card-foreground: #142f3b;
+  --primary: #102c3a;
+  --primary-foreground: #ffffff;
+  --secondary: #e6f2ef;
+  --secondary-foreground: #123b35;
+  --muted: #eef3f1;
+  --muted-foreground: #455960;   /* 6.9:1 on the page background */
+  --accent: #dff1ec;
+  --accent-foreground: #123b35;
+  --destructive: #b42318;
+  --border: #d5e0dc;
+  --input: #b9c9c4;
+  --ring: #c27c0e;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+    /* 17px base keeps body text comfortably readable on small phones */
+    font-size: 106.25%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    line-height: 1.65;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight text-balance;
+  }
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 3px;
+  }
+}
+
+/* Print: guides become one-page handouts families can bring to a call. */
+@media print {
+  @page {
+    margin: 1.5cm;
+  }
+  body {
+    background: #fff;
+    font-size: 12pt;
+  }
+  /* Scroll-reveal animations start hidden; make sure everything prints even if it was never scrolled to. */
+  *,
+  *::before,
+  *::after {
+    opacity: 1 !important;
+    transform: none !important;
+    color: #000 !important;
+    box-shadow: none !important;
+  }
+  a {
+    text-decoration: underline;
+  }
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
