@@ -18,10 +18,10 @@ function SheetContent({
 }: React.ComponentProps<typeof DialogPrimitive.Content>) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay className="fixed inset-0 z-50 bg-black/50" />
+      <DialogPrimitive.Overlay className="fixed inset-0 z-50 animate-[fade-in_200ms_ease-out] bg-brand-ink/60 backdrop-blur-sm" />
       <DialogPrimitive.Content
         className={cn(
-          'fixed inset-y-0 right-0 z-50 flex w-[min(22rem,88vw)] flex-col gap-4 bg-white p-6 shadow-xl',
+          'fixed inset-y-0 right-0 z-50 flex w-[min(22rem,88vw)] animate-[sheet-in_350ms_cubic-bezier(0.22,1,0.36,1)] flex-col gap-4 rounded-l-3xl bg-white p-6 shadow-2xl',
           className,
         )}
         {...props}

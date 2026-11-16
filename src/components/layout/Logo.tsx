@@ -4,16 +4,16 @@ import { cn } from '@/lib/utils'
 
 export function Logo({ dark = false }: { dark?: boolean }) {
   return (
-    <Link to="/" className="flex items-center gap-2.5 rounded-lg" aria-label="CarePath home">
+    <Link to="/" className="group flex items-center gap-2.5 rounded-full" aria-label="CarePath home">
       <span
         aria-hidden="true"
-        className="grid size-10 place-items-center rounded-xl bg-brand-navy font-display text-2xl font-extrabold text-brand-mint ring-1 ring-white/20"
+        className="grid size-9 place-items-center rounded-full bg-brand-mint text-brand-navy transition-transform duration-500 group-hover:rotate-180"
       >
-        +
+        <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
+          <path d="M12 5v14M5 12h14" />
+        </svg>
       </span>
-      <span className={cn('font-display text-xl font-extrabold tracking-tight', dark ? 'text-white' : 'text-brand-navy')}>
-        CarePath
-      </span>
+      <span className={cn('font-display text-xl font-extrabold tracking-tight', dark ? 'text-white' : 'text-brand-navy')}>CarePath</span>
     </Link>
   )
 }

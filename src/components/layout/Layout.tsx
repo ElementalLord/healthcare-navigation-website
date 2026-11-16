@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import { Outlet, useLocation } from 'react-router-dom'
 
+import { ScrollProgress } from '../motion'
 import { EmergencyBar } from './EmergencyBar'
 import { SiteFooter } from './SiteFooter'
 import { SiteHeader } from './SiteHeader'
@@ -27,10 +28,11 @@ export function Layout() {
       <button
         type="button"
         onClick={() => mainRef.current?.focus()}
-        className="sr-only z-50 rounded-lg bg-white px-4 py-3 font-semibold focus:not-sr-only focus:fixed focus:left-3 focus:top-3"
+        className="sr-only z-50 rounded-lg bg-white px-4 py-3 font-semibold focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[80]"
       >
         Skip to content
       </button>
+      <ScrollProgress />
       <EmergencyBar />
       <SiteHeader />
       <main id="main" ref={mainRef} tabIndex={-1} className="flex-1 outline-none">

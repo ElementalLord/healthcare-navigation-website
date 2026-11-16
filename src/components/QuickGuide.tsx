@@ -27,7 +27,7 @@ export function QuickGuide() {
   const journey = topic?.journey ? getJourney(topic.journey) : undefined
 
   return (
-    <div className="rounded-2xl bg-white p-5 text-foreground shadow-2xl sm:p-8">
+    <div className="rounded-[2rem] bg-white p-5 text-foreground shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)] sm:p-8">
       <div className="mb-5 flex items-center justify-between gap-4 text-sm font-bold uppercase tracking-wider text-muted-foreground">
         <span>Quick guide</span>
         <span aria-live="polite">Step {topic ? 2 : 1} of 2</span>
@@ -53,7 +53,7 @@ export function QuickGuide() {
                   <button
                     type="button"
                     onClick={() => choose(t)}
-                    className="group flex w-full cursor-pointer items-center justify-between gap-4 rounded-xl border-2 border-border p-4 text-left transition-colors hover:border-brand-teal hover:bg-secondary"
+                    className="group flex w-full cursor-pointer items-center justify-between gap-4 rounded-2xl border-2 border-border p-4 text-left transition-[border-color,background-color,transform] duration-200 hover:translate-x-1 hover:border-brand-teal hover:bg-secondary"
                   >
                     <span>
                       <span className="block text-lg font-semibold">{t.label}</span>

@@ -17,6 +17,7 @@ plain-language guides and call scripts, and gives partner organizations a clear 
 | [Framer Motion](https://motion.dev) | Animations (automatically turned off for people who choose reduced motion) |
 | [React Router](https://reactrouter.com) | Pages (`/#/guides`, `/#/directory`, …) |
 | [Lucide](https://lucide.dev) | Icons |
+| HTML canvas | The animated backgrounds (flowing path lines, dot grid), hand-written in `src/components/canvas` |
 
 No backend, database, cookies, analytics, or third-party requests. Fonts are self-hosted.
 
@@ -57,8 +58,11 @@ src/
     types.ts              ← the "shape" of each kind of content
   pages/                  ← one file per page
   components/             ← reusable pieces (QuickGuide, ContactForm, …)
-    ui/                   ← shadcn/ui components (Button, Card, Tabs, …)
-    layout/               ← header, footer, emergency bar
+    ui/                   ← shadcn/ui components (Button, Card, Tabs, Dialog, …)
+    layout/               ← floating header, search (Ctrl/⌘ + K), footer, emergency bar
+    canvas/               ← animated canvas backgrounds (PathField, DotGrid)
+    home/                 ← home page sections (journey demo, scroll story)
+    motion.tsx            ← animation helpers (Reveal, TextReveal, Magnetic, Counter, Marquee, …)
   index.css               ← colors, fonts, print styles
 ```
 
@@ -70,6 +74,15 @@ src/
 - **Add a directory listing:** add an entry to `src/data/resources.json` (see "Verifying resources" below).
 - **Set the contact email:** set `contactEmail` in `src/config/site.ts`. Forms switch from "demo" to opening the
   visitor's own email app. Only do this once someone has agreed to check that inbox.
+
+### Design and animation rules
+
+- Dark sections use the `aurora grain` classes plus a canvas (`<PathField />` or `<DotGrid />`).
+- Accent words in headings use `<Accent>` (serif italic). Use it for one phrase per heading, not everywhere.
+- Every animation must still work with motion turned off. The helpers in `motion.tsx` and `useCanvas.ts`
+  already handle this; if you add a new one, check it with your device's "reduce motion" setting on.
+- The numbers on the home page are counted from the data files. Never add made-up statistics.
+- The search (`layout/CommandMenu.tsx`) finds guides, pages, and glossary words automatically.
 
 ### Accessibility rules (please keep these)
 

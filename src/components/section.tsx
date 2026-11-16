@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
-import { Reveal } from './motion'
+import { PathField } from './canvas/PathField'
+import { Reveal, TextReveal } from './motion'
 
 export function Container({ className, children }: { className?: string; children: ReactNode }) {
   return <div className={cn('mx-auto w-full max-w-6xl px-4 sm:px-6', className)}>{children}</div>
@@ -12,14 +13,19 @@ export function Eyebrow({ children, dark = false }: { children: ReactNode; dark?
   return (
     <p
       className={cn(
-        'mb-3 flex items-center gap-2 text-sm font-bold uppercase tracking-[0.12em]',
-        dark ? 'text-brand-mint' : 'text-brand-teal',
+        'mb-4 inline-flex items-center gap-2.5 rounded-full border px-3.5 py-1.5 text-sm font-bold uppercase tracking-[0.14em]',
+        dark ? 'border-white/15 bg-white/5 text-brand-mint' : 'border-brand-teal/25 bg-white text-brand-teal',
       )}
     >
       <span aria-hidden="true" className={cn('size-2 rounded-full', dark ? 'bg-brand-mint' : 'bg-brand-teal')} />
       {children}
     </p>
   )
+}
+
+/** Serif italic accent for a word or phrase inside a heading. */
+export function Accent({ children, dark = false }: { children: ReactNode; dark?: boolean }) {
+  return <em className={cn('font-serif font-normal italic tracking-normal', dark ? 'text-shine' : 'text-brand-teal')}>{children}</em>
 }
 
 export function SectionHeading({
@@ -36,30 +42,33 @@ export function SectionHeading({
   className?: string
 }) {
   return (
-    <Reveal className={cn('mb-10 max-w-3xl', className)}>
+    <Reveal className={cn('mb-12 max-w-3xl', className)}>
       {eyebrow && <Eyebrow dark={dark}>{eyebrow}</Eyebrow>}
-      <h2 className={cn('text-3xl font-extrabold sm:text-4xl', dark ? 'text-white' : 'text-brand-navy')}>{title}</h2>
-      {intro && <p className={cn('mt-4 text-lg', dark ? 'text-white/85' : 'text-muted-foreground')}>{intro}</p>}
+      <h2 className={cn('text-4xl font-extrabold leading-[1.08] sm:text-5xl', dark ? 'text-white' : 'text-brand-navy')}>{title}</h2>
+      {intro && <p className={cn('mt-5 text-lg sm:text-xl', dark ? 'text-white/85' : 'text-muted-foreground')}>{intro}</p>}
     </Reveal>
   )
 }
 
-/** Dark banner at the top of inner pages. */
-export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string; title: ReactNode; intro?: ReactNode; children?: ReactNode }) {
+/** Dark animated banner at the top of inner pages. `title` must be plain text so it can animate word by word. */
+export function PageHero({ eyebrow, title, intro, children }: { eyebrow: string; title: string; intro?: ReactNode; children?: ReactNode }) {
   return (
-    <section className="relative overflow-hidden bg-brand-navy py-16 text-white sm:py-20 print:bg-white print:py-4 print:text-black">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -right-40 -top-56 size-[36rem] rounded-full border border-white/10 shadow-[0_0_0_70px_rgba(255,255,255,0.02),0_0_0_140px_rgba(255,255,255,0.015)] print:hidden"
-      />
+    <section className="aurora grain relative overflow-hidden pb-16 pt-32 text-white sm:pb-24 sm:pt-40 print:bg-white print:py-4 print:text-black">
+      <PathField lines={10} pulses={4} className="opacity-80" />
       <Container className="relative">
         <Reveal>
           <Eyebrow dark>{eyebrow}</Eyebrow>
-          <h1 className="max-w-3xl text-4xl font-extrabold leading-tight sm:text-5xl">{title}</h1>
-          {intro && <p className="mt-5 max-w-2xl text-lg text-white/85 print:text-black">{intro}</p>}
+        </Reveal>
+        <h1 className="max-w-4xl text-4xl font-extrabold leading-[1.05] sm:text-6xl">
+          <TextReveal text={title} />
+        </h1>
+        <Reveal delay={0.25}>
+          {intro && <p className="mt-6 max-w-2xl text-lg text-white/85 sm:text-xl print:text-black">{intro}</p>}
           {children}
         </Reveal>
       </Container>
+      {/* Curved edge into the page below. */}
+      <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-8 rounded-t-[2rem] bg-background print:hidden" />
     </section>
   )
 }

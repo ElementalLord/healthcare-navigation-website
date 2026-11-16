@@ -17,7 +17,7 @@ export function StatusBoard() {
         const col = statusBoard[key]
         return (
           <StaggerItem key={key}>
-            <Card className="h-full overflow-hidden">
+            <Card className="h-full overflow-hidden transition-transform duration-300 hover:-translate-y-1">
               <div aria-hidden="true" className={`h-1.5 ${bar}`} />
               <CardHeader>
                 <CardTitle className={`flex items-center gap-2 ${tone}`}>
