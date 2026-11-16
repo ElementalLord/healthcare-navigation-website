@@ -1,7 +1,7 @@
 [
   {
     "id": "sample-community-clinic",
-    "name": "SAMPLE — Example Community Health Center",
+    "name": "Example Community Health Center",
     "category": "Clinics & health centers",
     "description": "Example listing showing how a clinic will appear. Not a real organization.",
     "service_area": "Example: West Houston",
@@ -16,7 +16,7 @@
   },
   {
     "id": "sample-hospital-financial-help",
-    "name": "SAMPLE — Example Hospital Financial Assistance Office",
+    "name": "Example Hospital Financial Assistance Office",
     "category": "Bills & financial help",
     "description": "Example listing showing how a financial assistance program will appear. Not a real organization.",
     "service_area": "Example: Harris County residents",
@@ -28,7 +28,7 @@
   },
   {
     "id": "sample-language-line",
-    "name": "SAMPLE — Example Interpreter Request Line",
+    "name": "Example Interpreter Request Line",
     "category": "Language help",
     "description": "Example listing showing how a language service will appear. Not a real organization.",
     "service_area": "Example: Katy area",
@@ -40,7 +40,7 @@
   },
   {
     "id": "sample-rides",
-    "name": "SAMPLE — Example Medical Rides Program",
+    "name": "Example Medical Rides Program",
     "category": "Transportation",
     "description": "Example listing showing how a transportation program will appear. Not a real organization.",
     "service_area": "Example: Harris and Fort Bend counties",
@@ -52,7 +52,7 @@
   },
   {
     "id": "sample-enrollment",
-    "name": "SAMPLE — Example Insurance Enrollment Helpers",
+    "name": "Example Insurance Enrollment Helpers",
     "category": "Insurance & enrollment help",
     "description": "Example listing showing how an enrollment-help service will appear. Not a real organization.",
     "service_area": "Example: Greater Houston",
@@ -64,7 +64,7 @@
   },
   {
     "id": "sample-food",
-    "name": "SAMPLE — Example Food Pantry with Health Navigation",
+    "name": "Example Food Pantry with Health Navigation",
     "category": "Food & basic needs",
     "description": "Example listing showing how a basic-needs program will appear. Not a real organization.",
     "service_area": "Example: Katy",

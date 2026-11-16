@@ -14,10 +14,9 @@ plain-language guides and call scripts, and gives partner organizations a clear 
 | [React](https://react.dev) + [TypeScript](https://www.typescriptlang.org) | Pages and components, with type checking |
 | [Tailwind CSS](https://tailwindcss.com) | Styling with utility classes |
 | [shadcn/ui](https://ui.shadcn.com) | Accessible UI components (copied into `src/components/ui`, built on Radix) |
-| [Framer Motion](https://motion.dev) | Animations (automatically turned off for people who choose reduced motion) |
+| [Framer Motion](https://motion.dev) | The route-map animation and responses to clicks (turned off for people who choose reduced motion) |
 | [React Router](https://reactrouter.com) | Pages (`/#/guides`, `/#/directory`, …) |
 | [Lucide](https://lucide.dev) | Icons |
-| HTML canvas | The animated backgrounds (flowing path lines, dot grid), hand-written in `src/components/canvas` |
 
 No backend, database, cookies, analytics, or third-party requests. Fonts are self-hosted.
 
@@ -60,9 +59,8 @@ src/
   components/             ← reusable pieces (QuickGuide, ContactForm, …)
     ui/                   ← shadcn/ui components (Button, Card, Tabs, Dialog, …)
     layout/               ← floating header, search (Ctrl/⌘ + K), footer, emergency bar
-    canvas/               ← animated canvas backgrounds (PathField, DotGrid)
-    home/                 ← home page sections (journey demo, scroll story)
-    motion.tsx            ← animation helpers (Reveal, TextReveal, Magnetic, Counter, Marquee, …)
+    home/                 ← home page pieces (RouteMap, FollowUpTimetable)
+  data/routes.ts          ← each guide's route colour and icon
   index.css               ← colors, fonts, print styles
 ```
 
@@ -75,14 +73,23 @@ src/
 - **Set the contact email:** set `contactEmail` in `src/config/site.ts`. Forms switch from "demo" to opening the
   visitor's own email app. Only do this once someone has agreed to check that inbox.
 
-### Design and animation rules
+### Design rules
 
-- Dark sections use the `aurora grain` classes plus a canvas (`<PathField />` or `<DotGrid />`).
-- Accent words in headings use `<Accent>` (serif italic). Use it for one phrase per heading, not everywhere.
-- Every animation must still work with motion turned off. The helpers in `motion.tsx` and `useCanvas.ts`
-  already handle this; if you add a new one, check it with your device's "reduce motion" setting on.
-- The numbers on the home page are counted from the data files. Never add made-up statistics.
-- The search (`layout/CommandMenu.tsx`) finds guides, pages, and glossary words automatically.
+The look borrows from public-transit signage: a referral is a trip with stops, and our job is making
+sure the family arrives. The design follows Anthropic's `frontend-design` guidance to avoid a generic,
+template look.
+
+- **One typeface:** Atkinson Hyperlegible Next, made by the Braille Institute for low-vision readers.
+- **Flat colours only:** ink `#14213D`, route blue `#1F5FAD`, route green `#1A6E44`, signal yellow `#F2B41B`,
+  signage grey `#E9ECEE`, white. No gradients, glows, blur, or shadows. Yellow is a fill colour, never text on white.
+- **Shapes:** rectangles with small corner radii. No pill shapes. Circles are used only for route stops
+  and status markers.
+- **Motion:** one animated moment (the route map on the home page). Everything else moves only when the
+  visitor does something. No scroll fade-ins.
+- **Words:** sentence case, no ALL-CAPS labels, no arrows or "·" separators in text, no made-up statistics.
+  Buttons say exactly what happens ("Read the full guide", not "Learn more").
+- **Structure carries meaning:** numbers only on real sequences (route stops, guide steps, the follow-up
+  schedule). Each guide has a route colour in `src/data/routes.ts`, used on its icon, page stripe, and step line.
 
 ### Accessibility rules (please keep these)
 

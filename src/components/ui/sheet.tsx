@@ -18,16 +18,16 @@ function SheetContent({
 }: React.ComponentProps<typeof DialogPrimitive.Content>) {
   return (
     <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay className="fixed inset-0 z-50 animate-[fade-in_200ms_ease-out] bg-brand-ink/60 backdrop-blur-sm" />
+      <DialogPrimitive.Overlay className="fixed inset-0 z-50 animate-[fade-in_200ms_ease-out] bg-ink/60" />
       <DialogPrimitive.Content
         className={cn(
-          'fixed inset-y-0 right-0 z-50 flex w-[min(22rem,88vw)] animate-[sheet-in_350ms_cubic-bezier(0.22,1,0.36,1)] flex-col gap-4 rounded-l-3xl bg-white p-6 shadow-2xl',
+          'fixed inset-y-0 right-0 z-50 flex w-[min(22rem,88vw)] animate-[sheet-in_250ms_ease-out] flex-col gap-4 border-l-8 border-signal bg-white p-6',
           className,
         )}
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="absolute right-4 top-4 grid size-11 cursor-pointer place-items-center rounded-lg hover:bg-muted">
+        <DialogPrimitive.Close className="absolute right-4 top-4 grid size-11 cursor-pointer place-items-center rounded-md hover:bg-signage">
           <X aria-hidden="true" className="size-6" />
           <span className="sr-only">Close menu</span>
         </DialogPrimitive.Close>

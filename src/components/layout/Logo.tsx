@@ -2,18 +2,16 @@ import { Link } from 'react-router-dom'
 
 import { cn } from '@/lib/utils'
 
+/** Logo: a route line with two stops, the second one reached. */
 export function Logo({ dark = false }: { dark?: boolean }) {
   return (
-    <Link to="/" className="group flex items-center gap-2.5 rounded-full" aria-label="CarePath home">
-      <span
-        aria-hidden="true"
-        className="grid size-9 place-items-center rounded-full bg-brand-mint text-brand-navy transition-transform duration-500 group-hover:rotate-180"
-      >
-        <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round">
-          <path d="M12 5v14M5 12h14" />
-        </svg>
-      </span>
-      <span className={cn('font-display text-xl font-extrabold tracking-tight', dark ? 'text-white' : 'text-brand-navy')}>CarePath</span>
+    <Link to="/" className="flex items-center gap-2.5 rounded-sm" aria-label="CarePath home">
+      <svg aria-hidden="true" viewBox="0 0 40 24" className="h-6 w-10">
+        <rect x="6" y="10" width="28" height="4" fill={dark ? '#ffffff' : '#14213d'} />
+        <circle cx="7" cy="12" r="5.5" fill={dark ? '#14213d' : '#ffffff'} stroke={dark ? '#ffffff' : '#14213d'} strokeWidth="3" />
+        <circle cx="33" cy="12" r="7" fill="#f2b41b" stroke={dark ? '#ffffff' : '#14213d'} strokeWidth="3" />
+      </svg>
+      <span className={cn('text-xl font-bold tracking-tight', dark ? 'text-white' : 'text-ink')}>CarePath</span>
     </Link>
   )
 }

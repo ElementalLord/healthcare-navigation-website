@@ -106,9 +106,9 @@ export const volunteerLimits = {
     'Help look up and verify general resource information',
   ],
   mustHandOff: [
-    'Any health question or symptom → the family’s clinic (or 911 / 988 in an emergency)',
-    'Insurance, eligibility, or legal questions → the partner’s staff',
-    'Any sign of danger, abuse, or crisis → your adult supervisor right away',
+    'Any health question or symptom: send it to the family’s clinic (or 911 / 988 in an emergency)',
+    'Insurance, eligibility, or legal questions: send them to the partner’s staff',
+    'Any sign of danger, abuse, or crisis: tell your adult supervisor right away',
   ],
   never: [
     'Log in to a family’s portal or accounts, or ask for passwords',

@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { AlertTriangle, BadgeCheck, Globe, MapPin, Phone, Search, X } from 'lucide-react'
 import { Link, useSearchParams } from 'react-router-dom'
 
-import { Reveal } from '@/components/motion'
 import { Container, PageHero } from '@/components/section'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -29,7 +28,7 @@ function StatusBadge({ r }: { r: Resource }) {
         <AlertTriangle aria-hidden="true" /> Needs re-checking
       </Badge>
     )
-  return <Badge variant="outline">Sample entry: not a real organization</Badge>
+  return <Badge variant="outline">Sample entry, not a real organization</Badge>
 }
 
 function ResourceCard({ r }: { r: Resource }) {
@@ -41,13 +40,13 @@ function ResourceCard({ r }: { r: Resource }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.97 }}
       transition={{ duration: 0.2 }}
-      className={cn('flex flex-col rounded-xl border bg-card p-6 shadow-sm', isSample && 'border-dashed bg-white/70')}
+      className={cn('flex flex-col rounded-lg border-2 bg-white p-6', isSample ? 'border-dashed border-input' : 'border-ink')}
     >
       <div className="flex flex-wrap items-center gap-2">
         <Badge variant="secondary">{r.category}</Badge>
         <StatusBadge r={r} />
       </div>
-      <h3 className="mt-4 text-xl font-bold text-brand-navy">{r.name}</h3>
+      <h3 className="mt-4 text-xl font-bold text-ink">{r.name}</h3>
       <p className="mt-2 text-muted-foreground">{r.description}</p>
       <dl className="mt-4 grid gap-2 text-base">
         {(
@@ -122,14 +121,15 @@ export default function Directory() {
   return (
     <>
       <PageHero
-        eyebrow="Resource directory"
+        crumb="Resources"
+        stripe="var(--route-green)"
         title="Community resources, checked by a real person"
         intro="Every listing will show who can use it, what it costs, which languages are offered, and the date we last confirmed it directly with the organization."
       />
 
       <Container className="py-12">
         {verifiedCount === 0 && (
-          <Reveal className="mb-8 flex gap-3 rounded-xl border-2 border-[#d9a441] bg-[#fffaf0] p-5 text-[#5c3b00]">
+          <div className="mb-8 flex gap-3 rounded-md border-l-8 border-signal bg-signage p-5 text-ink">
             <AlertTriangle aria-hidden="true" className="mt-0.5 size-6 shrink-0" />
             <div>
               <p className="text-lg font-bold">These are sample entries, not real organizations.</p>
@@ -142,10 +142,10 @@ export default function Directory() {
                 .
               </p>
             </div>
-          </Reveal>
+          </div>
         )}
 
-        <div className="grid gap-4 rounded-2xl border bg-white p-5 shadow-sm md:grid-cols-[1.5fr_1fr_1fr] md:items-end">
+        <div className="grid gap-4 rounded-lg border-2 border-ink bg-white p-5 md:grid-cols-[1.5fr_1fr_1fr] md:items-end">
           <div className="space-y-2">
             <Label htmlFor="dir-search">Search</Label>
             <div className="relative">
@@ -188,8 +188,8 @@ export default function Directory() {
               aria-pressed={category === c}
               onClick={() => setCategory(category === c ? '' : c)}
               className={cn(
-                'min-h-11 cursor-pointer rounded-full border-2 px-4 text-base font-semibold transition-colors',
-                category === c ? 'border-brand-navy bg-brand-navy text-white' : 'border-border bg-white hover:border-brand-teal',
+                'min-h-11 cursor-pointer rounded-md border-2 px-4 text-base font-bold',
+                category === c ? 'border-ink bg-ink text-white' : 'border-border bg-white hover:border-ink',
               )}
             >
               {c}
@@ -224,7 +224,7 @@ export default function Directory() {
           </AnimatePresence>
         </ul>
         {results.length === 0 && (
-          <p className="mt-6 rounded-xl bg-muted p-6 text-lg">
+          <p className="mt-6 rounded-md bg-signage p-6 text-lg">
             Nothing matches yet. Try another word or clear the filters. You can also ask a clinic’s front desk or a caseworker who
             they recommend.
           </p>

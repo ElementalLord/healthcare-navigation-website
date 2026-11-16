@@ -3,7 +3,6 @@ import { Search } from 'lucide-react'
 import { useSearchParams } from 'react-router-dom'
 
 import { JourneyCard } from '@/components/JourneyCard'
-import { Reveal, Stagger, StaggerItem } from '@/components/motion'
 import { Container, PageHero, SectionHeading } from '@/components/section'
 import { Input } from '@/components/ui/input'
 import { glossary } from '@/data/glossary'
@@ -29,31 +28,30 @@ export default function Guides() {
   return (
     <>
       <PageHero
-        eyebrow="Guides"
+        crumb="Guides"
         title="Step-by-step guides for common healthcare situations"
         intro="Each guide is written in plain language and can be printed or copied to share. Use them on your own, or with a volunteer or caseworker."
       />
 
       <section className="py-16">
         <Container>
-          <Stagger className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {journeys.map((j, i) => (
-              <StaggerItem key={j.slug} className={i === 0 ? 'md:col-span-2' : i === journeys.length - 1 ? 'md:col-span-2 lg:col-span-3' : undefined}>
-                <JourneyCard journey={j} featured={i === 0} />
-              </StaggerItem>
+          <ul className="grid gap-x-10 border-b-2 border-ink md:grid-cols-2">
+            {journeys.map((j) => (
+              <li key={j.slug}>
+                <JourneyCard journey={j} />
+              </li>
             ))}
-          </Stagger>
+          </ul>
         </Container>
       </section>
 
-      <section id="glossary" className="bg-white py-16">
+      <section id="glossary" className="bg-signage py-16">
         <Container>
           <SectionHeading
-            eyebrow="Words to know"
             title="Healthcare words, explained simply"
             intro="Not sure what a word means? Look it up here. It is always OK to ask staff what a word means too."
           />
-          <Reveal className="relative mb-8 max-w-md">
+          <div className="relative mb-8 max-w-md">
             <label htmlFor="glossary-search" className="sr-only">
               Search words
             </label>
@@ -66,15 +64,15 @@ export default function Guides() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-          </Reveal>
+          </div>
           <p className="sr-only" aria-live="polite">
             {terms.length} words shown
           </p>
-          <dl className="grid gap-4 md:grid-cols-2">
+          <dl className="grid gap-x-10 md:grid-cols-2">
             {terms.map((t) => (
-              <div key={t.id} id={`term-${t.id}`} className={cn('rounded-2xl border bg-background p-6 transition-shadow', t.id === term && 'border-brand-teal ring-4 ring-brand-mint/50')}>
-                <dt className="text-lg font-bold text-brand-navy">{t.term}</dt>
-                <dd className="mt-1 text-foreground/90">{t.definition}</dd>
+              <div key={t.id} id={`term-${t.id}`} className={cn('border-t-2 border-ink py-5', t.id === term && 'border-l-8 border-l-signal bg-white pl-4')}>
+                <dt className="text-xl font-bold text-ink">{t.term}</dt>
+                <dd className="mt-1 text-lg text-foreground/90">{t.definition}</dd>
               </div>
             ))}
           </dl>

@@ -40,7 +40,7 @@ export function ContactForm({ kind }: { kind: 'contact' | 'feedback' }) {
 
   return (
     <form onSubmit={onSubmit} className="space-y-5" noValidate>
-      <div className="flex gap-3 rounded-xl bg-[#fdf0d5] p-4 text-[#5c3b00]">
+      <div className="flex gap-3 rounded-md border-l-8 border-signal bg-signage p-4 text-ink">
         <AlertTriangle aria-hidden="true" className="mt-0.5 size-5 shrink-0" />
         <p>
           Please do <strong>not</strong> include symptoms, diagnoses, medical records, insurance or ID numbers, immigration
@@ -71,9 +71,9 @@ export function ContactForm({ kind }: { kind: 'contact' | 'feedback' }) {
         />
       </div>
       <Button type="submit" size="lg">
-        <Send aria-hidden="true" /> {hasContactEmail ? 'Write email' : 'Preview (demo)'}
+        <Send aria-hidden="true" /> {hasContactEmail ? 'Write email' : 'Try the form (demo)'}
       </Button>
-      <p role="status" className="min-h-7 font-medium text-brand-teal">
+      <p role="status" className="min-h-7 font-bold text-route-blue">
         {status}
       </p>
     </form>

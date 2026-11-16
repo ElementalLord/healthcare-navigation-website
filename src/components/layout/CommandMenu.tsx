@@ -107,13 +107,13 @@ export function CommandMenu({ open, onOpenChange }: { open: boolean; onOpenChang
                 aria-selected={i === active}
                 onPointerMove={() => setActive(i)}
                 onClick={() => go(item)}
-                className={cn('flex cursor-pointer items-center gap-4 rounded-2xl px-4 py-3', i === active && 'bg-secondary')}
+                className={cn('flex cursor-pointer items-center gap-4 rounded-md border-l-4 px-4 py-3', i === active ? 'border-signal bg-signage' : 'border-transparent')}
               >
-                <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-brand-navy text-brand-mint">
+                <span className="grid size-10 shrink-0 place-items-center rounded-md bg-ink text-white">
                   <Icon aria-hidden="true" className="size-5" />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block font-semibold text-brand-navy">{item.label}</span>
+                  <span className="block font-bold text-ink">{item.label}</span>
                   <span className="block truncate text-base text-muted-foreground">{item.hint}</span>
                 </span>
                 {i === active && <CornerDownLeft aria-hidden="true" className="size-4 shrink-0 text-muted-foreground" />}
@@ -122,7 +122,7 @@ export function CommandMenu({ open, onOpenChange }: { open: boolean; onOpenChang
           })}
           {results.length === 0 && <li className="px-4 py-8 text-center text-lg text-muted-foreground">Nothing matches “{query}”.</li>}
         </ul>
-        <DialogDescription id="cmd-help" className="border-t bg-muted px-5 py-3 text-sm text-muted-foreground">
+        <DialogDescription id="cmd-help" className="border-t bg-signage px-5 py-3 text-sm text-muted-foreground">
           Use the arrow keys to move, Enter to open, and Esc to close.
         </DialogDescription>
       </DialogContent>
